@@ -2,7 +2,7 @@ package com.madama.fabio.backend.chainOfRules;
 
 import java.util.ArrayList;
 
-import com.madama.fabio.Player;
+import com.madama.fabio.backend.Player;
 
 public interface ChainOfRulesHandler {
 	ArrayList<Player> nextChain(ArrayList<Player> players) throws Exception;

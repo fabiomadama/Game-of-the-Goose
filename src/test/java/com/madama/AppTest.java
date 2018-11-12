@@ -7,9 +7,10 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.madama.fabio.Controller;
-import com.madama.fabio.Player;
-import com.madama.fabio.SessionScope;
+import com.madama.fabio.backend.Controller;
+import com.madama.fabio.backend.GooseUtils;
+import com.madama.fabio.backend.Player;
+import com.madama.fabio.backend.SessionScope;
 import com.madama.fabio.view.ViewOca;
 
 /**
@@ -32,27 +33,48 @@ public class AppTest {
 
 	@Test
 	public void testMove() {		
-		ArrayList<Player> players = new ArrayList<Player>(2);
+		int space = 55;
+		
+		ArrayList<Player> players = new ArrayList<Player>();
 		Player player1 = new Player();
-		player1.setSpace(1);
-		player1.setColor(Color.BLUE);
+		player1.setSpace(space);
+		player1.setColor(Color.GREEN);
 		player1.setRound(1);
-		player1.setX(690);
-		player1.setY(350);
+		player1.setX(0);
+		player1.setY(0);
 		players.add(player1);
 		
 		Player player2 = new Player();
-		player2.setSpace(1);
-		player2.setColor(Color.RED);
+		player2.setSpace(space);
+		player2.setColor(Color.BLUE);
 		player2.setRound(1);
-		player2.setX(700);
-		player2.setY(430);
-		players.add(player2);		
+		player2.setX(0);
+		player2.setY(0);
+		players.add(player2);	
+		
+		Player player3 = new Player();
+		player3.setSpace(space);
+		player3.setColor(Color.RED);
+		player3.setRound(1);
+		player3.setX(0);
+		player3.setY(0);
+		players.add(player3);	
+		
+		Player player4 = new Player();
+		player4.setSpace(space);
+		player4.setColor(Color.YELLOW);
+		player4.setRound(1);
+		player4.setX(0);
+		player4.setY(0);
+		players.add(player4);	
+		
+
+
+  	    GooseUtils.retrieveXYfromSpaces(players);		
 		view.redraw(players);
-		SessionScope.setPlayers(players);
 		
 		try {
-			Thread.sleep(1500);
+			Thread.sleep(1800);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -74,7 +96,7 @@ public class AppTest {
 	
 	@Test
 	public void testSimulateDiceRoll(){
-		ArrayList<Player> players = new ArrayList<Player>(2);
+		ArrayList<Player> players = new ArrayList<Player>();
 		Player player1 = new Player();
 		player1.setSpace(0);
 		player1.setColor(Color.BLUE);
@@ -104,7 +126,7 @@ public class AppTest {
 	
 	@Test
 	public void testRegularGame(){
-		ArrayList<Player> players = new ArrayList<Player>(2);
+		ArrayList<Player> players = new ArrayList<Player>();
 		Player player1 = new Player();
 		player1.setSpace(0);
 		player1.setColor(Color.BLUE);

@@ -7,6 +7,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
+import com.madama.fabio.backend.Player;
+import com.madama.fabio.backend.SessionScope;
 import com.madama.fabio.view.ViewOca;
 
 /**

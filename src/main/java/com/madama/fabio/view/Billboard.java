@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
-import com.madama.fabio.Player;
+import com.madama.fabio.backend.Player;
 
 /**
  * 

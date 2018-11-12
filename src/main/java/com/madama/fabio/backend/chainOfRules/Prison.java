@@ -5,8 +5,8 @@ import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import com.madama.fabio.Player;
-import com.madama.fabio.SessionScope;
+import com.madama.fabio.backend.Player;
+import com.madama.fabio.backend.SessionScope;
 
 public class Prison extends AbstractSpaces {
 	private static final Logger logger = Logger.getLogger( GenericSpaces.class.getName());

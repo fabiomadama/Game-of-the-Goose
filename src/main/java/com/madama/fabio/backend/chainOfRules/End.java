@@ -1,23 +1,27 @@
 package com.madama.fabio.backend.chainOfRules;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import com.madama.fabio.Player;
-import com.madama.fabio.SessionScope;
+import com.madama.fabio.backend.Player;
+import com.madama.fabio.backend.SessionScope;
 
 public class End extends AbstractSpaces {
 	private static final Logger logger = Logger.getLogger(GenericSpaces.class.getName());
-	private Integer playerNumber;
 
+	{
+		super.genericSpacesNumber = new HashSet<Integer>(0);	
+	}
+	
 	public End(ChainOfRulesHandler nextChainObj) {
 		super(nextChainObj);
 
 	}
 
 	@Override
-	public boolean doTest(int destination) {		
+	public boolean doTest(int destination) {
 		return destination >= 63;
 	}
 
@@ -25,8 +29,8 @@ public class End extends AbstractSpaces {
 	public ArrayList<Player> executeRules(ArrayList<Player> players) {
 		logger.log(Level.INFO, "End");
 
-		Player player = players.get(this.playerNumber); //I can't use getPlayerNumber()
-		player.setSpace(calcolateDestination());
+		Player player = players.get(getPlayerNumber()); 		
+		player.setSpace(calcolateDestination(player));
 		player.setRound(SessionScope.getRound());
 		SessionScope.setDice_1(0);
 		SessionScope.setDice_2(0);
@@ -35,14 +39,14 @@ public class End extends AbstractSpaces {
 		return players;
 	}
 
-	private int calcolateDestination(){
-		if(findDestination() == 63){
-			System.out.println(this.playerNumber + " Win!!!!! ");
+	private int calcolateDestination(Player player) {
+		if (findDestination() == 63) {
+			player.setWin(true);
+			logger.log(Level.INFO, "Goose WIN !!");
 		}
-		if(findDestination() > 63 ){
+		if (findDestination() > 63) {
 			return (63 - (findDestination() - 63));
 		}
 		return findDestination();
-		
 	}
 }

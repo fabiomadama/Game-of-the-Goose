@@ -78,7 +78,7 @@ public class ComponentGenerator
 		return panel;
 	}
 
-	public JPanel retrieveDices( Billboard billboard, MessageBoard messageBoard)
+	public JPanel retrieveDices(Billboard billboard, MessageBoard messageBoard)
 	{
 		// Panel
 		JPanel panel = new JPanel();

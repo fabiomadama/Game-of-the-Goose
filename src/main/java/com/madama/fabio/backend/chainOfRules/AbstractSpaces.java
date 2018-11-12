@@ -3,9 +3,9 @@ package com.madama.fabio.backend.chainOfRules;
 import java.util.ArrayList;
 import java.util.HashSet;
 
-import com.madama.fabio.Player;
-import com.madama.fabio.RulesUtils;
-import com.madama.fabio.SessionScope;
+import com.madama.fabio.backend.Player;
+import com.madama.fabio.backend.GooseUtils;
+import com.madama.fabio.backend.SessionScope;
 
 public abstract class AbstractSpaces implements ChainOfRulesHandler {
 	private ChainOfRulesHandler nextChainObj;
@@ -60,7 +60,7 @@ public abstract class AbstractSpaces implements ChainOfRulesHandler {
 	}
 
 	public Integer getPlayerNumber() {
-		return RulesUtils.whosnext(SessionScope.getPlayers());
+		return GooseUtils.whosnext(SessionScope.getPlayers());
 	}
 
 }

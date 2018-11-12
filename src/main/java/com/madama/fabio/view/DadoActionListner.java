@@ -11,8 +11,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.Timer;
 
-import com.madama.fabio.Controller;
-import com.madama.fabio.SessionScope;
+import com.madama.fabio.backend.Controller;
+import com.madama.fabio.backend.SessionScope;
 
 public class DadoActionListner implements java.awt.event.ActionListener {
 

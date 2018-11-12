@@ -10,7 +10,7 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import com.madama.fabio.Player;
+import com.madama.fabio.backend.Player;
 
 
 public class ViewOca extends JFrame
