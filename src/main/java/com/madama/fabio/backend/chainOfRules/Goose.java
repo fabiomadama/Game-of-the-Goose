@@ -1,6 +1,5 @@
 package com.madama.fabio.backend.chainOfRules;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -8,7 +7,8 @@ import java.util.logging.Logger;
 import com.madama.fabio.backend.Player;
 import com.madama.fabio.backend.SessionScope;
 
-public class Goose extends AbstractSpaces {
+public class Goose extends AbstractSpaces
+{
 
 	private static final Logger logger = Logger.getLogger(GenericSpaces.class.getName());
 	{
@@ -22,29 +22,31 @@ public class Goose extends AbstractSpaces {
 		genericSpacesNumber.add(54);
 	}
 
-	public Goose(ChainOfRulesHandler nextChainObj) {
+	public Goose(ChainOfRulesHandler nextChainObj)
+	{
 		super(nextChainObj);
 
 	}
 
 	@Override
-	public ArrayList<Player> executeRules(ArrayList<Player> players) {
+	public SessionScope executeRules(SessionScope sessionScope)
+	{
 		logger.log(Level.INFO, "Goose");
-		Player player = players.get(getPlayerNumber());
+		Player player = sessionScope.getPlayers().get(getPlayerNumber(sessionScope));
 
-		if (player.getRound() == 0 && findDestination() == 9) {
+		if (player.getRound() == 0 && findDestination(sessionScope) == 9)
+		{
 			player.setSpace(63);
 			player.setWin(true);
 			logger.log(Level.INFO, "Goose WIN !!");
-			return players;
 		}
-		player.setSpace(findDestination() + SessionScope.getDice_1() + SessionScope.getDice_2());
-		player.setRound(SessionScope.getRound());
-		SessionScope.setDice_1(0);
-		SessionScope.setDice_2(0);
-		SessionScope.setRound(SessionScope.getRound() + 1);
+		player.setSpace(findDestination(sessionScope) + sessionScope.getDice_1() + sessionScope.getDice_2());
+		player.setRound(sessionScope.getRound());
+		sessionScope.setDice_1(0);
+		sessionScope.setDice_2(0);
+		sessionScope.setRound(sessionScope.getRound() + 1);
 
-		return players;
+		return sessionScope;
 	}
 
 }

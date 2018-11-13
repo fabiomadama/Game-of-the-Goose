@@ -1,6 +1,5 @@
 package com.madama.fabio.backend.chainOfRules;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -8,11 +7,10 @@ import java.util.logging.Logger;
 import com.madama.fabio.backend.Player;
 import com.madama.fabio.backend.SessionScope;
 
-public class GenericSpaces extends AbstractSpaces {
-	private static final Logger logger = Logger.getLogger( GenericSpaces.class.getName());
-	
+public class GenericSpaces extends AbstractSpaces
+{
+	private static final Logger logger = Logger.getLogger(GenericSpaces.class.getName());
 
-	
 	{
 		super.genericSpacesNumber = new HashSet<Integer>(50);
 		genericSpacesNumber.add(1);
@@ -23,7 +21,7 @@ public class GenericSpaces extends AbstractSpaces {
 		genericSpacesNumber.add(7);
 		genericSpacesNumber.add(8);
 		genericSpacesNumber.add(10);
-		
+
 		genericSpacesNumber.add(11);
 		genericSpacesNumber.add(12);
 		genericSpacesNumber.add(13);
@@ -32,7 +30,7 @@ public class GenericSpaces extends AbstractSpaces {
 		genericSpacesNumber.add(16);
 		genericSpacesNumber.add(17);
 		genericSpacesNumber.add(20);
-		
+
 		genericSpacesNumber.add(21);
 		genericSpacesNumber.add(22);
 		genericSpacesNumber.add(13);
@@ -42,7 +40,7 @@ public class GenericSpaces extends AbstractSpaces {
 		genericSpacesNumber.add(28);
 		genericSpacesNumber.add(29);
 		genericSpacesNumber.add(30);
-		
+
 		genericSpacesNumber.add(32);
 		genericSpacesNumber.add(33);
 		genericSpacesNumber.add(34);
@@ -51,8 +49,8 @@ public class GenericSpaces extends AbstractSpaces {
 		genericSpacesNumber.add(38);
 		genericSpacesNumber.add(39);
 		genericSpacesNumber.add(40);
-		
-		genericSpacesNumber.add(41);	
+
+		genericSpacesNumber.add(41);
 		genericSpacesNumber.add(43);
 		genericSpacesNumber.add(44);
 		genericSpacesNumber.add(46);
@@ -60,31 +58,33 @@ public class GenericSpaces extends AbstractSpaces {
 		genericSpacesNumber.add(48);
 		genericSpacesNumber.add(49);
 		genericSpacesNumber.add(50);
-		
-		genericSpacesNumber.add(51);	
+
+		genericSpacesNumber.add(51);
 		genericSpacesNumber.add(53);
 		genericSpacesNumber.add(55);
 		genericSpacesNumber.add(56);
 		genericSpacesNumber.add(57);
 		genericSpacesNumber.add(59);
 		genericSpacesNumber.add(60);
-		
+
 		genericSpacesNumber.add(61);
 		genericSpacesNumber.add(62);
-	}	
+	}
 
-	public GenericSpaces(ChainOfRulesHandler nextChainObj) {
+	public GenericSpaces(ChainOfRulesHandler nextChainObj)
+	{
 		super(nextChainObj);
 	}
-	
+
 	@Override
-	public ArrayList<Player> executeRules(ArrayList<Player> players) {
+	public SessionScope executeRules(SessionScope sessionScope)
+	{
 		logger.log(Level.INFO, "GenericSpaces");
-		Player player = players.get(getPlayerNumber());
-		player.setSpace(findDestination());		
-		SessionScope.resetDice();
-		SessionScope.setRound(SessionScope.getRound() +1);		
-		player.setRound(SessionScope.getRound());
-		return players;
+		Player player = sessionScope.getPlayers().get(getPlayerNumber(sessionScope));
+		player.setSpace(findDestination(sessionScope));
+		sessionScope.resetDice();
+		sessionScope.setRound(sessionScope.getRound() + 1);
+		player.setRound(sessionScope.getRound());
+		return sessionScope;
 	}
 }

@@ -1,11 +1,10 @@
 package com.madama.fabio.backend.chainOfRules;
 
-import java.util.ArrayList;
+import com.madama.fabio.backend.SessionScope;
 
-import com.madama.fabio.backend.Player;
+public interface ChainOfRulesHandler
+{
+	SessionScope nextChain(SessionScope sessionScope) throws Exception;
 
-public interface ChainOfRulesHandler {
-	ArrayList<Player> nextChain(ArrayList<Player> players) throws Exception;
-
-	ArrayList<Player> doExecute(ArrayList<Player> players) throws Exception;
+	SessionScope doExecute(SessionScope sessionScope) throws Exception;
 }

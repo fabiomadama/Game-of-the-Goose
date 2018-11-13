@@ -21,9 +21,7 @@ public class App
 	{
 		App.initLog();
 		ViewOca oca = new ViewOca();
-		
-		oca.initGameGui();
-		
+		SessionScope sessionScope = new SessionScope();
 		/* test */
 		ArrayList<Player> players = new ArrayList<Player>(1);
 		Player player1 = new Player();
@@ -33,18 +31,21 @@ public class App
 		player1.setX(0);
 		player1.setY(0);
 		players.add(player1);
-		
+
 		Player player2 = new Player();
 		player2.setSpace(0);
 		player2.setColor(Color.RED);
 		player2.setRound(0);
 		player2.setX(0);
 		player2.setY(0);
-		players.add(player2);		
-		SessionScope.setPlayers(players);
+		players.add(player2);
+		sessionScope.setPlayers(players);
+		oca.initGameGui(sessionScope);
+
 	}
-	
-	private static void initLog(){
+
+	private static void initLog()
+	{
 		Logger log = Logger.getLogger("App");
 		log.setLevel(Level.ALL);
 		ConsoleHandler handler = new ConsoleHandler();

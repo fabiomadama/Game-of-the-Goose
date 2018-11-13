@@ -1,6 +1,5 @@
 package com.madama.fabio.backend.chainOfRules;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -8,7 +7,8 @@ import java.util.logging.Logger;
 import com.madama.fabio.backend.Player;
 import com.madama.fabio.backend.SessionScope;
 
-public class Labyrinth extends AbstractSpaces {
+public class Labyrinth extends AbstractSpaces
+{
 	private static final Logger logger = Logger.getLogger(GenericSpaces.class.getName());
 
 	{
@@ -16,22 +16,24 @@ public class Labyrinth extends AbstractSpaces {
 		genericSpacesNumber.add(42);
 	}
 
-	public Labyrinth(ChainOfRulesHandler nextChainObj) {
+	public Labyrinth(ChainOfRulesHandler nextChainObj)
+	{
 		super(nextChainObj);
 
 	}
 
 	@Override
-	public ArrayList<Player> executeRules(ArrayList<Player> players) {
+	public SessionScope executeRules(SessionScope sessionScope)
+	{
 		logger.log(Level.INFO, "Labyrinth");
-		Player player = players.get(getPlayerNumber());
+		Player player = sessionScope.getPlayers().get(getPlayerNumber(sessionScope));
 		player.setSpace(33);
-		player.setRound(SessionScope.getRound());
-		SessionScope.setDice_1(0);
-		SessionScope.setDice_2(0);
-		SessionScope.setRound(SessionScope.getRound() + 1);
+		player.setRound(sessionScope.getRound());
+		sessionScope.setDice_1(0);
+		sessionScope.setDice_2(0);
+		sessionScope.setRound(sessionScope.getRound() + 1);
 
-		return players;
+		return sessionScope;
 	}
 
 }

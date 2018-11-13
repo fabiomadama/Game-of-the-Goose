@@ -15,6 +15,9 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 
+import com.madama.fabio.backend.SessionScope;
+import com.madama.fabio.bean.DiceActionBean;
+
 public class ComponentGenerator
 {
 	public JPanel retrieveTable()
@@ -78,7 +81,7 @@ public class ComponentGenerator
 		return panel;
 	}
 
-	public JPanel retrieveDices(Billboard billboard, MessageBoard messageBoard)
+	public JPanel retrieveDices(Billboard billboard, MessageBoard messageBoard, SessionScope sessionScope)
 	{
 		// Panel
 		JPanel panel = new JPanel();
@@ -89,19 +92,19 @@ public class ComponentGenerator
 
 		panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
 
-		panel.add(retriveDice(1, billboard, messageBoard));
-		panel.add(retriveDice(2, billboard, messageBoard));
+		panel.add(retriveDice(1, billboard, messageBoard, sessionScope));
+		panel.add(retriveDice(2, billboard, messageBoard, sessionScope));
 
 		return panel;
 	}
 
-	public JButton retriveDice(int dadoN, Billboard billboard, MessageBoard messageBoard)
+	public JButton retriveDice(int dadoN, Billboard billboard, MessageBoard messageBoard, SessionScope sessionScope)
 	{
 		// DADO
-		JButton dado = new JButton();
+		JButton dice = new JButton();
 		Dimension dimension = new Dimension(70, 70);
-		dado.setMaximumSize(dimension);
-		dado.setMinimumSize(dimension);
+		dice.setMaximumSize(dimension);
+		dice.setMinimumSize(dimension);
 		BufferedImage[] facceDado = new BufferedImage[6];
 
 		try
@@ -117,9 +120,18 @@ public class ComponentGenerator
 		{
 			ex.printStackTrace();
 		}
-		JLabel tira = new JLabel(new ImageIcon(facceDado[0]));
-		dado.add(tira);
-		dado.addActionListener(new DadoActionListner(dado, tira, facceDado, dadoN, billboard, messageBoard));
-		return dado;
+		JLabel diceImg = new JLabel(new ImageIcon(facceDado[0]));
+		dice.add(diceImg);
+
+		DiceActionBean diceActionBean = new DiceActionBean();
+		diceActionBean.setDice(dice);
+		diceActionBean.setDiceN(dadoN);
+		diceActionBean.setDiceImg(diceImg);
+		diceActionBean.setBillboard(billboard);
+		diceActionBean.setMessageBoard(messageBoard);
+		diceActionBean.setSessionScope(sessionScope);
+
+		dice.addActionListener(new DiceActionListner(diceActionBean));
+		return dice;
 	}
 }
