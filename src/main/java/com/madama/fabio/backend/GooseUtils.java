@@ -15,6 +15,12 @@ public class GooseUtils
 {
 	private static final Logger logger = Logger.getLogger(GooseUtils.class.getName());
 
+	/**
+	 * Init the player property
+	 * 
+	 * @param sessionScope
+	 * @param numPlayers
+	 */
 	public static void initPlayers(SessionScope sessionScope, int numPlayers)
 	{
 		ArrayList<Player> players = new ArrayList<Player>();
@@ -37,6 +43,12 @@ public class GooseUtils
 		sessionScope.setPlayers(players);
 	}
 
+	/**
+	 * Calculate who is next
+	 * 
+	 * @param sessionScope
+	 * @return int intedx of list
+	 */
 	public static int whosnext(SessionScope sessionScope)
 	{
 		int index = 0;
@@ -53,6 +65,13 @@ public class GooseUtils
 		return index;
 	}// whosnext
 
+	/**
+	 * Calculate coordinates from color
+	 * 
+	 * @param space
+	 * @param color
+	 * @return
+	 */
 	private static Integer retrieveCoordinatesFromColor(Integer space, Color color)
 	{
 		if (color.equals(Color.GREEN))
@@ -74,6 +93,12 @@ public class GooseUtils
 		return space;
 	}
 
+	/**
+	 * Retrieve the player Color to use in message
+	 * 
+	 * @param color
+	 * @return
+	 */
 	public static String retrievePlayerName(Color color)
 	{
 		if (color.equals(Color.GREEN))

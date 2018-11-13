@@ -16,6 +16,13 @@ public class Controller
 {
 	private static final Logger logger = Logger.getLogger(Controller.class.getName());
 
+	/**
+	 * Depending on the value of the dice, the player's position and the direct consequences are determined
+	 * 
+	 * @param billboard
+	 * @param messageBoard
+	 * @param sessionScope
+	 */
 	public void check(Billboard billboard, MessageBoard messageBoard, SessionScope sessionScope)
 	{
 		try
