@@ -1,3 +1,7 @@
+/**
+ * @author madama fabio
+ *
+ */
 package com.madama.fabio.backend;
 
 import java.awt.Color;
@@ -10,6 +14,28 @@ import com.madama.fabio.view.MessageBoard;
 public class GooseUtils
 {
 	private static final Logger logger = Logger.getLogger(GooseUtils.class.getName());
+
+	public static void initPlayers(SessionScope sessionScope, int numPlayers)
+	{
+		ArrayList<Player> players = new ArrayList<Player>();
+		if (numPlayers > 0)
+		{
+			players.add(new Player(Color.GREEN, 0, 0, 0, 0, false, false));
+		}
+		if (numPlayers > 1)
+		{
+			players.add(new Player(Color.BLUE, 0, 0, 0, 0, false, false));
+		}
+		if (numPlayers > 2)
+		{
+			players.add(new Player(Color.RED, 0, 0, 0, 0, false, false));
+		}
+		if (numPlayers > 3)
+		{
+			players.add(new Player(Color.YELLOW, 0, 0, 0, 0, false, false));
+		}
+		sessionScope.setPlayers(players);
+	}
 
 	public static int whosnext(SessionScope sessionScope)
 	{

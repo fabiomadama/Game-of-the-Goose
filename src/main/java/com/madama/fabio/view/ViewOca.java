@@ -1,3 +1,7 @@
+/**
+ * @author madama fabio
+ *
+ */
 package com.madama.fabio.view;
 
 import java.awt.Component;
@@ -29,9 +33,8 @@ public class ViewOca extends JFrame
 		ComponentGenerator componentGenerator = new ComponentGenerator();
 		JPanel panel = configureLayout(componentGenerator, sessionScope);
 		mainFrame.add(panel);
-		mainFrame.setJMenuBar(componentGenerator.retrieveMenuBar());
+		mainFrame.setJMenuBar(componentGenerator.retrieveMenuBar(sessionScope));
 		mainFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
 		mainFrame.setVisible(true);
 	}
 

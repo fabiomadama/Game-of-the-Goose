@@ -2,4 +2,4 @@
  * @author madama fabio
  *
  */
-package com.madama.fabio.bean;
+package com.madama.fabio.view;

@@ -1,3 +1,7 @@
+/**
+ * @author madama fabio
+ *
+ */
 package com.madama.fabio.view;
 
 import java.awt.event.ActionEvent;
@@ -23,7 +27,7 @@ public class DiceActionListner implements java.awt.event.ActionListener
 	private MessageBoard		messageBoard;
 	private JButton				dice;
 	private JLabel				diceImg;
-	private BufferedImage[]		facceDice;
+	private BufferedImage[]		diceFaces;
 	private int					lastRoll;
 	private int					diceN;														 // identifico il Dice	
 	private SessionScope		sessionScope;
@@ -34,28 +38,29 @@ public class DiceActionListner implements java.awt.event.ActionListener
 		this.messageBoard = diceActionBean.getMessageBoard();
 		this.dice = diceActionBean.getDice();
 		this.diceImg = diceActionBean.getDiceImg();
-		this.facceDice = diceActionBean.getDiceFaces();
+		this.diceFaces = diceActionBean.getDiceFaces();
 		this.diceN = diceActionBean.getDiceN();
 		this.sessionScope = diceActionBean.getSessionScope();
 	}
 
 	public void actionPerformed(ActionEvent e)
 	{
+		if (this.sessionScope.getPlayers() == null && this.sessionScope.getPlayers().size() == 0)
+		{
+			return;
+		}
 		// XXX semplice validazione del lancio dadi
 		if (diceN == 1 && this.sessionScope.getDice_1() != 0 && this.sessionScope.getDice_2() == 0)
 		{
-			dice.setEnabled(true);
 			return;
 		}
 		if (diceN == 2 && this.sessionScope.getDice_2() != 0 && this.sessionScope.getDice_1() == 0)
 		{
-			dice.setEnabled(true);
 			return;
 		}
 
 		if (sessionScope.getDice_1() != 0 && this.sessionScope.getDice_2() != 0)
 		{
-			dice.setEnabled(true);
 			return;
 		}
 		//new launch
@@ -70,7 +75,7 @@ public class DiceActionListner implements java.awt.event.ActionListener
 				{
 					counter++;
 					lastRoll = (int) (Math.random() * 6);
-					diceImg.setIcon(new ImageIcon(facceDice[lastRoll]));
+					diceImg.setIcon(new ImageIcon(diceFaces[lastRoll]));
 				}
 				else
 				{

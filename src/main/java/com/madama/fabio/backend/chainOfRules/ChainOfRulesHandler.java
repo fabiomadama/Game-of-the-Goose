@@ -1,3 +1,7 @@
+/**
+ * @author madama fabio
+ *
+ */
 package com.madama.fabio.backend.chainOfRules;
 
 import com.madama.fabio.backend.SessionScope;

@@ -1,3 +1,7 @@
+/**
+ * @author madama fabio
+ *
+ */
 package com.madama.fabio.view;
 
 import java.awt.Graphics;
@@ -17,17 +21,17 @@ import com.madama.fabio.backend.Player;
  * 
  * @author fabio
  *
- * * 
- *         Panel for billboard is extension of JPanel class for allow to
- *         modify the content at runtime
+ *         * Panel for billboard is extension of JPanel class for allow to modify the content at runtime
  */
-public class Billboard extends JPanel {
-	
+public class Billboard extends JPanel
+{
+
 	private static final long serialVersionUID = 1L;
-	private ArrayList<Player> players = new ArrayList<Player>(0);
-    
+	private ArrayList<Player> players		   = new ArrayList<Player>(0);
+
 	@Override
-    protected void paintComponent(Graphics g) {        
+	protected void paintComponent(Graphics g)
+	{
 		super.paintComponent(g);
 		try
 		{
@@ -38,15 +42,17 @@ public class Billboard extends JPanel {
 		{
 			ex.printStackTrace();
 		}
-		for(Player player : players){
-	        Graphics2D g2 = (Graphics2D) g;
-	        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
-	        g2.setColor(player.getColor());
-	        g2.fillOval(player.getX(), player.getY(), 20, 20);
-        }        
-    }
+		for (Player player : players)
+		{
+			Graphics2D g2 = (Graphics2D) g;
+			g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+			g2.setColor(player.getColor());
+			g2.fillOval(player.getX(), player.getY(), 20, 20);
+		}
+	}
 
-	public void setPlayers(ArrayList<Player> players) {
+	public void setPlayers(ArrayList<Player> players)
+	{
 		this.players = players;
 	}
 }

@@ -1,3 +1,7 @@
+/**
+ * @author madama fabio
+ *
+ */
 package com.madama.fabio.bean;
 
 import java.awt.image.BufferedImage;

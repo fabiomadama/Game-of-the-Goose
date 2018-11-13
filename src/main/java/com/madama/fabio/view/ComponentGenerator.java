@@ -1,3 +1,7 @@
+/**
+ * @author madama fabio
+ *
+ */
 package com.madama.fabio.view;
 
 import java.awt.Color;
@@ -13,6 +17,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
 import com.madama.fabio.backend.SessionScope;
@@ -29,7 +34,7 @@ public class ComponentGenerator
 		return panel;
 	}
 
-	public JMenuBar retrieveMenuBar()
+	public JMenuBar retrieveMenuBar(SessionScope sessionScope)
 	{
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setDoubleBuffered(true);
@@ -38,13 +43,29 @@ public class ComponentGenerator
 		menuBar.setMinimumSize(dimension);
 		menuBar.setName("menuBar");
 
-		JMenu fileMenu = new JMenu();
+		JMenu fileMenu = new JMenu("File");
 		Dimension dimensionMenu = new Dimension(50, 21);
 		menuBar.setDoubleBuffered(true);
 		menuBar.setMaximumSize(dimensionMenu);
 		menuBar.setMinimumSize(dimensionMenu);
-		fileMenu.setText("File");
-		fileMenu.setName("fileMenu");
+
+		MenuItemListener menuItemListener = new MenuItemListener(sessionScope);
+
+		JMenuItem menuItemPlayers2 = new JMenuItem("2 players ");
+		menuItemPlayers2.setActionCommand("2");
+		menuItemPlayers2.addActionListener(menuItemListener);
+		fileMenu.add(menuItemPlayers2);
+
+		JMenuItem menuItemPlayers3 = new JMenuItem("3 players ");
+		menuItemPlayers3.setActionCommand("3");
+		menuItemPlayers3.addActionListener(menuItemListener);
+		fileMenu.add(menuItemPlayers3);
+
+		JMenuItem menuItemPlayers4 = new JMenuItem("4 players ");
+		menuItemPlayers4.setActionCommand("4");
+		menuItemPlayers4.addActionListener(menuItemListener);
+		fileMenu.add(menuItemPlayers4);
+
 		menuBar.add(fileMenu);
 
 		JMenu helpMenu = new JMenu();
@@ -105,7 +126,7 @@ public class ComponentGenerator
 		Dimension dimension = new Dimension(70, 70);
 		dice.setMaximumSize(dimension);
 		dice.setMinimumSize(dimension);
-		BufferedImage[] facceDado = new BufferedImage[6];
+		BufferedImage[] diceFaces = new BufferedImage[6];
 
 		try
 		{
@@ -113,20 +134,21 @@ public class ComponentGenerator
 			int width = 290 / 6;
 			for (int index = 0; index < 6; index++)
 			{
-				facceDado[index] = img.getSubimage(width * index, 0, 50, 40);
+				diceFaces[index] = img.getSubimage(width * index, 0, 50, 40);
 			}
 		}
 		catch (IOException ex)
 		{
 			ex.printStackTrace();
 		}
-		JLabel diceImg = new JLabel(new ImageIcon(facceDado[0]));
+		JLabel diceImg = new JLabel(new ImageIcon(diceFaces[0]));
 		dice.add(diceImg);
 
 		DiceActionBean diceActionBean = new DiceActionBean();
 		diceActionBean.setDice(dice);
 		diceActionBean.setDiceN(dadoN);
 		diceActionBean.setDiceImg(diceImg);
+		diceActionBean.setDiceFaces(diceFaces);
 		diceActionBean.setBillboard(billboard);
 		diceActionBean.setMessageBoard(messageBoard);
 		diceActionBean.setSessionScope(sessionScope);

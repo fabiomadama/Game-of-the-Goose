@@ -31,46 +31,15 @@ public class AppTest
 		view = new ViewOca();
 		SessionScope sessionScope = new SessionScope();
 		view.initGameGui(sessionScope);
-		//		Assert.assertTrue(true);
+		Assert.assertTrue(true);
 	}
 
 	@Test
 	public void testMove()
 	{
-		int space = 55;
-
 		ArrayList<Player> players = new ArrayList<Player>();
-		Player player1 = new Player();
-		player1.setSpace(space);
-		player1.setColor(Color.GREEN);
-		player1.setRound(1);
-		player1.setX(0);
-		player1.setY(0);
-		players.add(player1);
-
-		Player player2 = new Player();
-		player2.setSpace(space);
-		player2.setColor(Color.BLUE);
-		player2.setRound(1);
-		player2.setX(0);
-		player2.setY(0);
-		players.add(player2);
-
-		Player player3 = new Player();
-		player3.setSpace(space);
-		player3.setColor(Color.RED);
-		player3.setRound(1);
-		player3.setX(0);
-		player3.setY(0);
-		players.add(player3);
-
-		Player player4 = new Player();
-		player4.setSpace(space);
-		player4.setColor(Color.YELLOW);
-		player4.setRound(1);
-		player4.setX(0);
-		player4.setY(0);
-		players.add(player4);
+		players.add(new Player(Color.GREEN, 1, 0, 100, 0, false, false));
+		players.add(new Player(Color.BLUE, 55, 0, 200, 0, false, false));
 
 		GooseUtils.retrieveXYfromSpaces(players);
 		view.redraw(players);
@@ -107,21 +76,8 @@ public class AppTest
 	public void testSimulateDiceRoll()
 	{
 		ArrayList<Player> players = new ArrayList<Player>();
-		Player player1 = new Player();
-		player1.setSpace(0);
-		player1.setColor(Color.BLUE);
-		player1.setRound(0);
-		player1.setX(0);
-		player1.setY(0);
-		players.add(player1);
-
-		Player player2 = new Player();
-		player2.setSpace(0);
-		player2.setColor(Color.RED);
-		player2.setRound(0);
-		player2.setX(0);
-		player2.setY(0);
-		players.add(player2);
+		players.add(new Player(Color.GREEN, 0, 0, 0, 0, false, false));
+		players.add(new Player(Color.BLUE, 0, 0, 0, 0, false, false));
 
 		SessionScope sessionScope = new SessionScope();
 		sessionScope.setPlayers(players);
@@ -138,22 +94,10 @@ public class AppTest
 	public void testRegularGame()
 	{
 		ArrayList<Player> players = new ArrayList<Player>();
-		Player player1 = new Player();
-		player1.setSpace(0);
-		player1.setColor(Color.BLUE);
-		player1.setRound(0);
-		player1.setX(0);
-		player1.setY(0);
-		players.add(player1);
-
-		Player player2 = new Player();
-		player2.setSpace(0);
-		player2.setColor(Color.RED);
-		player2.setRound(0);
-		player2.setX(0);
-		player2.setY(0);
-		players.add(player2);
-		view.redraw(players);
+		players.add(new Player(Color.GREEN, 0, 0, 0, 0, false, false));
+		players.add(new Player(Color.BLUE, 0, 0, 0, 0, false, false));
+		players.add(new Player(Color.RED, 0, 0, 0, 0, false, false));
+		players.add(new Player(Color.YELLOW, 0, 0, 0, 0, false, false));
 
 		SessionScope sessionScope = new SessionScope();
 		sessionScope.setPlayers(players);
@@ -163,5 +107,4 @@ public class AppTest
 		}
 		Assert.assertEquals(Long.valueOf(5), Long.valueOf(sessionScope.getRound()));
 	}
-
 }
