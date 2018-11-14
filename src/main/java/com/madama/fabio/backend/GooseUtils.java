@@ -90,6 +90,7 @@ public class GooseUtils
 				if (sessionScope.getPlayers().get(i).getRound() < sessionScope.getRound())
 				{
 					index = i;
+					break;
 				}
 			} // for
 		} // if

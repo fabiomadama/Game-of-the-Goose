@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import com.madama.fabio.backend.GooseUtils;
 import com.madama.fabio.backend.Player;
 import com.madama.fabio.backend.SessionScope;
 import com.madama.fabio.view.MessageBoard;
@@ -46,6 +47,8 @@ public class Prison extends AbstractSpaces
 		player.setStuck(true);
 		player.setRound(sessionScope.getRound());
 		sessionScope.setRound(sessionScope.getRound() + 1);
+		messageBoard.setText(GooseUtils.retrievePlayerName(player.getColor()) + " in Prison, waiting for someone to free you ! ");
+		messageBoard.repaint();
 
 		return sessionScope;
 	}
