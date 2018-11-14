@@ -19,7 +19,7 @@ public class Prison extends AbstractSpaces
 
 	{
 		super.genericSpacesNumber = new HashSet<Integer>(2);
-		genericSpacesNumber.add(42);
+		genericSpacesNumber.add(31);
 		genericSpacesNumber.add(52);
 	}
 
@@ -34,8 +34,7 @@ public class Prison extends AbstractSpaces
 	{
 		logger.log(Level.INFO, "GenericSpaces");
 
-		Player player = sessionScope.getPlayers().get(getPlayerNumber(sessionScope));
-		player.setSpace(findDestination(sessionScope));
+		Player player = sessionScope.getPlayers().get(getPlayerNumber(sessionScope));		
 		for (Player item : sessionScope.getPlayers())
 		{
 			if (item.isStuck())
@@ -43,8 +42,9 @@ public class Prison extends AbstractSpaces
 				item.setStuck(false);
 				break;
 			}
-		}
+		}		
 		player.setStuck(true);
+		player.setSpace(findDestination(sessionScope));
 		player.setRound(sessionScope.getRound());
 		sessionScope.setRound(sessionScope.getRound() + 1);
 		messageBoard.setText(GooseUtils.retrievePlayerName(player.getColor()) + " in Prison, waiting for someone to free you ! ");

@@ -62,7 +62,6 @@ public class SessionScope
 		this.dice_2 = 0;
 	}
 
-	/* --synchronized method */
 	public boolean isDiceLaunched_1()
 	{
 		return diceLaunched_1;
@@ -81,13 +80,7 @@ public class SessionScope
 	public void yesDiceLaunched2()
 	{
 		this.diceLaunched_2 = true;
-	}
-
-	public void resetDiceValue()
-	{
-		this.dice_1 = 0;
-		this.dice_2 = 0;
-	}
+	}	
 
 	public void resetDiceLanched()
 	{

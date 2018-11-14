@@ -39,8 +39,11 @@ public class GooseUtils
 	 * @param sessionScope
 	 * @param numPlayers
 	 */
-	public static void initPlayers(SessionScope sessionScope, int numPlayers)
+	public static void initPlayersAndGame(SessionScope sessionScope, int numPlayers)
 	{
+		sessionScope.resetDice();
+		sessionScope.resetDiceLanched();
+
 		ArrayList<Player> players = new ArrayList<Player>();
 		if (numPlayers > 0)
 		{
@@ -87,7 +90,8 @@ public class GooseUtils
 		{
 			for (int i = 0; i < sessionScope.getPlayers().size(); i++)
 			{
-				if (sessionScope.getPlayers().get(i).getRound() < sessionScope.getRound())
+				Player player = sessionScope.getPlayers().get(i);
+				if (!player.isStuck() && player.getRound() < sessionScope.getRound())
 				{
 					index = i;
 					break;
@@ -163,9 +167,20 @@ public class GooseUtils
 		{
 			if (player.isWin())
 			{
-				//TODO
+				messageBoard.setText(GooseUtils.retrievePlayerName(player.getColor()) + " win the game ! ");
+				messageBoard.repaint();
 			}
 		}
+	}
+
+	public static boolean checkLook(ArrayList<Player> players, MessageBoard messageBoard)
+	{
+		if(players.size() == 2 && players.get(0).isStuck() && players.get(1).isStuck()) {
+			messageBoard.setText("All locked, end game.. ");
+			messageBoard.repaint();
+			return true;
+		}
+		return false;
 	}
 
 	public static ArrayList<Player> retrieveXYfromSpaces(ArrayList<Player> players)
@@ -434,7 +449,7 @@ public class GooseUtils
 			}
 			player.setY(retrieveCoordinatesFromColor(player.getY(), player.getColor()));
 			logger.log(Level.INFO, "Color: " + player.getColor() + " space: " + player.getSpace() + " X:" + player.getX() + " Y:" + player.getY()
-					+ " roud:" + player.getRound());
+					+ " round:" + player.getRound());
 		} // for
 		return players;
 

@@ -20,7 +20,7 @@ public class MenuItemListener implements ActionListener
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		GooseUtils.initPlayers(sessionScope, Integer.valueOf(e.getActionCommand()));
+		GooseUtils.initPlayersAndGame(sessionScope, Integer.valueOf(e.getActionCommand()));
 		GooseUtils.moveGui(billboard, sessionScope.getPlayers());
 	}
 }

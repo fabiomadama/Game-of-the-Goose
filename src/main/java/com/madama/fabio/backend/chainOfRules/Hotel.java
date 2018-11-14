@@ -31,13 +31,14 @@ public class Hotel extends AbstractSpaces
 	@Override
 	public SessionScope executeRules(SessionScope sessionScope, MessageBoard messageBoard)
 	{
-		logger.log(Level.INFO, "Hotel");
+		logger.log(Level.INFO, "Hotel or Water Well");
 
 		Player player = sessionScope.getPlayers().get(getPlayerNumber(sessionScope));
 		player.setSpace(findDestination(sessionScope));
-		player.setRound(sessionScope.getRound() + 3);
+		player.setRound(sessionScope.getRound());
+		player.setRound(player.getRound() +3);
 		sessionScope.setRound(sessionScope.getRound() + 1);
-		messageBoard.setText(GooseUtils.retrievePlayerName(player.getColor()) + " in Hotel, wait 3 round ! ");
+		messageBoard.setText(GooseUtils.retrievePlayerName(player.getColor()) + " in Hotel or Water Well, wait 3 round ! ");
 		messageBoard.repaint();
 		return sessionScope;
 	}

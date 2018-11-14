@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import com.madama.fabio.backend.GooseUtils;
 import com.madama.fabio.backend.Player;
 import com.madama.fabio.backend.SessionScope;
 import com.madama.fabio.view.MessageBoard;
@@ -35,6 +36,8 @@ public class Labyrinth extends AbstractSpaces
 		player.setSpace(33);
 		player.setRound(sessionScope.getRound());
 		sessionScope.setRound(sessionScope.getRound() + 1);
+		messageBoard.setText(GooseUtils.retrievePlayerName(player.getColor()) + " in Labyrinth, back to 33 ! ");
+		messageBoard.repaint();
 
 		return sessionScope;
 	}

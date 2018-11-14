@@ -74,6 +74,9 @@ public class ComponentGenerator
 		menuBar.setMinimumSize(dimensionHelp);
 		helpMenu.setText("Help");
 		helpMenu.setName("helpMenu");
+		
+		JMenuItem helpItem = new JMenuItem("Press File and select number of players");
+		helpMenu.add(helpItem);
 		menuBar.add(helpMenu);
 
 		return menuBar;
