@@ -8,8 +8,10 @@ import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import com.madama.fabio.backend.GooseUtils;
 import com.madama.fabio.backend.Player;
 import com.madama.fabio.backend.SessionScope;
+import com.madama.fabio.view.MessageBoard;
 
 public class Bone extends AbstractSpaces
 {
@@ -26,16 +28,16 @@ public class Bone extends AbstractSpaces
 	}
 
 	@Override
-	public SessionScope executeRules(SessionScope sessionScope)
+	public SessionScope executeRules(SessionScope sessionScope, MessageBoard messageBoard)
 	{
 		logger.log(Level.INFO, "Bone");
 		Player player = sessionScope.getPlayers().get(getPlayerNumber(sessionScope));
 		player.setSpace(1);
 		player.setRound(sessionScope.getRound());
-		sessionScope.setDice_1(0);
-		sessionScope.setDice_2(0);
+		sessionScope.resetDiceValue();
 		sessionScope.setRound(sessionScope.getRound() + 1);
-
+		messageBoard.setText(GooseUtils.retrievePlayerName(player.getColor()) + " Back to start! ");
+		messageBoard.repaint();
 		return sessionScope;
 	}
 

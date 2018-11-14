@@ -9,6 +9,7 @@ import java.util.HashSet;
 import com.madama.fabio.backend.GooseUtils;
 import com.madama.fabio.backend.Player;
 import com.madama.fabio.backend.SessionScope;
+import com.madama.fabio.view.MessageBoard;
 
 public abstract class AbstractSpaces implements ChainOfRulesHandler
 {
@@ -21,11 +22,11 @@ public abstract class AbstractSpaces implements ChainOfRulesHandler
 	}
 
 	@Override
-	public SessionScope nextChain(SessionScope sessionScope) throws Exception
+	public SessionScope nextChain(SessionScope sessionScope, MessageBoard messageBoard) throws Exception
 	{
 		if (nextChainObj != null)
 		{
-			return nextChainObj.doExecute(sessionScope);
+			return nextChainObj.doExecute(sessionScope, null);
 		}
 		else
 		{
@@ -58,21 +59,22 @@ public abstract class AbstractSpaces implements ChainOfRulesHandler
 
 	/**
 	 * 
+	 * @param messageBoard TODO
 	 * @param Apply the rules of the landing space
 	 * @return
 	 */
-	public abstract SessionScope executeRules(SessionScope sessionScope);
+	public abstract SessionScope executeRules(SessionScope sessionScope, MessageBoard messageBoard);
 
 	@Override
-	public SessionScope doExecute(SessionScope sessionScope) throws Exception
+	public SessionScope doExecute(SessionScope sessionScope, MessageBoard messageBoard) throws Exception
 	{
 		if (doTest(findDestination(sessionScope)))
 		{
-			return executeRules(sessionScope);
+			return executeRules(sessionScope, messageBoard);
 		}
 		else
 		{
-			return nextChain(sessionScope);
+			return nextChain(sessionScope, messageBoard);
 		}
 	}
 

@@ -8,8 +8,10 @@ import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import com.madama.fabio.backend.GooseUtils;
 import com.madama.fabio.backend.Player;
 import com.madama.fabio.backend.SessionScope;
+import com.madama.fabio.view.MessageBoard;
 
 public class Bridge extends AbstractSpaces
 {
@@ -27,16 +29,17 @@ public class Bridge extends AbstractSpaces
 	}
 
 	@Override
-	public SessionScope executeRules(SessionScope sessionScope)
+	public SessionScope executeRules(SessionScope sessionScope, MessageBoard messageBoard)
 	{
 		logger.log(Level.INFO, "Bridge");
 
 		Player player = sessionScope.getPlayers().get(getPlayerNumber(sessionScope));
-		player.setSpace(12);
+		player.setSpace(6 + sessionScope.getDice_1() + sessionScope.getDice_2());
 		player.setRound(sessionScope.getRound());
-		sessionScope.setDice_1(0);
-		sessionScope.setDice_2(0);
+		sessionScope.resetDiceValue();
 		sessionScope.setRound(sessionScope.getRound() + 1);
+		messageBoard.setText(GooseUtils.retrievePlayerName(player.getColor()) + " on Bridge, double score ! ");
+		messageBoard.repaint();
 
 		return sessionScope;
 	}

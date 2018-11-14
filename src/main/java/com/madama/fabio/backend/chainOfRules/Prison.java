@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 
 import com.madama.fabio.backend.Player;
 import com.madama.fabio.backend.SessionScope;
+import com.madama.fabio.view.MessageBoard;
 
 public class Prison extends AbstractSpaces
 {
@@ -28,7 +29,7 @@ public class Prison extends AbstractSpaces
 	}
 
 	@Override
-	public SessionScope executeRules(SessionScope sessionScope)
+	public SessionScope executeRules(SessionScope sessionScope, MessageBoard messageBoard)
 	{
 		logger.log(Level.INFO, "GenericSpaces");
 
@@ -44,8 +45,7 @@ public class Prison extends AbstractSpaces
 		}
 		player.setStuck(true);
 		player.setRound(sessionScope.getRound());
-		sessionScope.setDice_1(0);
-		sessionScope.setDice_2(0);
+		sessionScope.resetDiceValue();
 		sessionScope.setRound(sessionScope.getRound() + 1);
 
 		return sessionScope;

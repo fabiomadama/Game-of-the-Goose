@@ -34,7 +34,7 @@ public class ComponentGenerator
 		return panel;
 	}
 
-	public JMenuBar retrieveMenuBar(SessionScope sessionScope)
+	public JMenuBar retrieveMenuBar(SessionScope sessionScope, Billboard billboard)
 	{
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setDoubleBuffered(true);
@@ -49,7 +49,7 @@ public class ComponentGenerator
 		menuBar.setMaximumSize(dimensionMenu);
 		menuBar.setMinimumSize(dimensionMenu);
 
-		MenuItemListener menuItemListener = new MenuItemListener(sessionScope);
+		MenuItemListener menuItemListener = new MenuItemListener(sessionScope, billboard);
 
 		JMenuItem menuItemPlayers2 = new JMenuItem("2 players ");
 		menuItemPlayers2.setActionCommand("2");

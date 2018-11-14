@@ -83,6 +83,12 @@ public class SessionScope
 		this.diceLaunched_2 = true;
 	}
 
+	public void resetDiceValue()
+	{
+		this.dice_1 = 0;
+		this.dice_2 = 0;
+	}
+
 	public void resetDiceLanched()
 	{
 		this.diceLaunched_1 = false;

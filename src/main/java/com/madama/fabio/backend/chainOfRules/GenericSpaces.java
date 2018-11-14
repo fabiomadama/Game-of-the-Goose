@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 
 import com.madama.fabio.backend.Player;
 import com.madama.fabio.backend.SessionScope;
+import com.madama.fabio.view.MessageBoard;
 
 public class GenericSpaces extends AbstractSpaces
 {
@@ -81,7 +82,7 @@ public class GenericSpaces extends AbstractSpaces
 	}
 
 	@Override
-	public SessionScope executeRules(SessionScope sessionScope)
+	public SessionScope executeRules(SessionScope sessionScope, MessageBoard messageBoard)
 	{
 		logger.log(Level.INFO, "GenericSpaces");
 		Player player = sessionScope.getPlayers().get(getPlayerNumber(sessionScope));

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import com.madama.fabio.view.Billboard;
 import com.madama.fabio.view.MessageBoard;
 
 public class GooseUtils
@@ -41,6 +42,19 @@ public class GooseUtils
 			players.add(new Player(Color.YELLOW, 0, 0, 0, 0, false, false));
 		}
 		sessionScope.setPlayers(players);
+	}
+
+	/**
+	 * Move player on billboard
+	 * 
+	 * @param billboard
+	 * @param players
+	 */
+	public static void moveGui(Billboard billboard, ArrayList<Player> players)
+	{
+		players = GooseUtils.retrieveXYfromSpaces(players);
+		billboard.setPlayers(players);
+		billboard.repaint();
 	}
 
 	/**
@@ -131,8 +145,7 @@ public class GooseUtils
 		{
 			if (player.isWin())
 			{
-				messageBoard.setText(GooseUtils.retrievePlayerName(player.getColor()) + " player win !");
-				messageBoard.repaint();
+				//TODO
 			}
 		}
 	}

@@ -8,8 +8,10 @@ import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import com.madama.fabio.backend.GooseUtils;
 import com.madama.fabio.backend.Player;
 import com.madama.fabio.backend.SessionScope;
+import com.madama.fabio.view.MessageBoard;
 
 public class Goose extends AbstractSpaces
 {
@@ -33,7 +35,7 @@ public class Goose extends AbstractSpaces
 	}
 
 	@Override
-	public SessionScope executeRules(SessionScope sessionScope)
+	public SessionScope executeRules(SessionScope sessionScope, MessageBoard messageBoard)
 	{
 		logger.log(Level.INFO, "Goose");
 		Player player = sessionScope.getPlayers().get(getPlayerNumber(sessionScope));
@@ -42,15 +44,18 @@ public class Goose extends AbstractSpaces
 		{
 			player.setSpace(63);
 			player.setWin(true);
+			messageBoard.setText(GooseUtils.retrievePlayerName(player.getColor()) + " player win !");
+			messageBoard.repaint();
 			logger.log(Level.INFO, "Goose WIN !!");
 		}
-		player.setSpace(findDestination(sessionScope) + sessionScope.getDice_1() + sessionScope.getDice_2());
-		player.setRound(sessionScope.getRound());
-		sessionScope.setDice_1(0);
-		sessionScope.setDice_2(0);
+		else
+		{
+			player.setSpace(findDestination(sessionScope) + sessionScope.getDice_1() + sessionScope.getDice_2());
+			player.setRound(sessionScope.getRound());
+		}
+		sessionScope.resetDiceValue();
 		sessionScope.setRound(sessionScope.getRound() + 1);
 
 		return sessionScope;
 	}
-
 }

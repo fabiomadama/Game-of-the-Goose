@@ -8,8 +8,10 @@ import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import com.madama.fabio.backend.GooseUtils;
 import com.madama.fabio.backend.Player;
 import com.madama.fabio.backend.SessionScope;
+import com.madama.fabio.view.MessageBoard;
 
 public class End extends AbstractSpaces
 {
@@ -32,21 +34,20 @@ public class End extends AbstractSpaces
 	}
 
 	@Override
-	public SessionScope executeRules(SessionScope sessionScope)
+	public SessionScope executeRules(SessionScope sessionScope, MessageBoard messageBoard)
 	{
 		logger.log(Level.INFO, "End");
 
 		Player player = sessionScope.getPlayers().get(getPlayerNumber(sessionScope));
-		player.setSpace(calcolateDestination(sessionScope, player));
+		player.setSpace(calcolateDestination(sessionScope, player, messageBoard));
 		player.setRound(sessionScope.getRound());
-		sessionScope.setDice_1(0);
-		sessionScope.setDice_2(0);
+		sessionScope.resetDiceValue();
 		sessionScope.setRound(sessionScope.getRound() + 1);
 
 		return sessionScope;
 	}
 
-	private int calcolateDestination(SessionScope sessionScope, Player player)
+	private int calcolateDestination(SessionScope sessionScope, Player player, MessageBoard messageBoard)
 	{
 		if (findDestination(sessionScope) == 63)
 		{
@@ -55,6 +56,8 @@ public class End extends AbstractSpaces
 		}
 		if (findDestination(sessionScope) > 63)
 		{
+			messageBoard.setText(GooseUtils.retrievePlayerName(player.getColor()) + " try again ! ");
+			messageBoard.repaint();
 			return (63 - (findDestination(sessionScope) - 63));
 		}
 		return findDestination(sessionScope);

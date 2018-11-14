@@ -28,21 +28,14 @@ public class Controller
 		try
 		{
 			ChainOfRulesClient chainClient = new ChainOfRulesClient();
-			sessionScope = chainClient.start(sessionScope);
+			sessionScope = chainClient.start(sessionScope, messageBoard);
 			ArrayList<Player> players = sessionScope.getPlayers();
+			GooseUtils.moveGui(billboard, players);
 			GooseUtils.checkWin(sessionScope.getPlayers(), messageBoard);
-			moveGui(billboard, players);
 		}
 		catch (Exception e)
 		{
 			logger.log(Level.SEVERE, "check", e);
 		}
-	}
-
-	private void moveGui(Billboard billboard, ArrayList<Player> players)
-	{
-		players = GooseUtils.retrieveXYfromSpaces(players);
-		billboard.setPlayers(players);
-		billboard.repaint();
 	}
 }

@@ -38,8 +38,11 @@ public class AppTest
 	public void testMove()
 	{
 		ArrayList<Player> players = new ArrayList<Player>();
-		players.add(new Player(Color.GREEN, 1, 0, 100, 0, false, false));
-		players.add(new Player(Color.BLUE, 55, 0, 200, 0, false, false));
+		int space = 17;
+		players.add(new Player(Color.GREEN, space, 0, 100, 0, false, false));
+		players.add(new Player(Color.BLUE, space, 0, 200, 0, false, false));
+		players.add(new Player(Color.RED, space, 0, 0, 0, false, false));
+		players.add(new Player(Color.YELLOW, space, 0, 0, 0, false, false));
 
 		GooseUtils.retrieveXYfromSpaces(players);
 		view.redraw(players);
