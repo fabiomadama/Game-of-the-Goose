@@ -17,6 +17,23 @@ public class GooseUtils
 	private static final Logger logger = Logger.getLogger(GooseUtils.class.getName());
 
 	/**
+	 * Determines if the event should be heard
+	 * 
+	 * @param sessionScope
+	 * @param billboard
+	 * @param messageBoard
+	 */
+	public static synchronized void check(SessionScope sessionScope, Billboard billboard, MessageBoard messageBoard)
+	{
+		if (sessionScope.getDice_1() != 0 && sessionScope.getDice_2() != 0 && sessionScope.isDiceLaunched_1() && sessionScope.isDiceLaunched_2())
+		{
+			logger.log(Level.INFO, "Dice value 1: " + sessionScope.getDice_1() + " 2: " + sessionScope.getDice_2());
+			Controller controller = new Controller();
+			controller.check(billboard, messageBoard, sessionScope);
+		}
+	}
+
+	/**
 	 * Init the player property
 	 * 
 	 * @param sessionScope

@@ -41,7 +41,6 @@ public class End extends AbstractSpaces
 		Player player = sessionScope.getPlayers().get(getPlayerNumber(sessionScope));
 		player.setSpace(calcolateDestination(sessionScope, player, messageBoard));
 		player.setRound(sessionScope.getRound());
-		sessionScope.resetDiceValue();
 		sessionScope.setRound(sessionScope.getRound() + 1);
 
 		return sessionScope;

@@ -87,7 +87,6 @@ public class GenericSpaces extends AbstractSpaces
 		logger.log(Level.INFO, "GenericSpaces");
 		Player player = sessionScope.getPlayers().get(getPlayerNumber(sessionScope));
 		player.setSpace(findDestination(sessionScope));
-		sessionScope.resetDice();
 		sessionScope.setRound(sessionScope.getRound() + 1);
 		player.setRound(sessionScope.getRound());
 		return sessionScope;

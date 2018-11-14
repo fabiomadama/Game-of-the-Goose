@@ -53,7 +53,6 @@ public class Goose extends AbstractSpaces
 			player.setSpace(findDestination(sessionScope) + sessionScope.getDice_1() + sessionScope.getDice_2());
 			player.setRound(sessionScope.getRound());
 		}
-		sessionScope.resetDiceValue();
 		sessionScope.setRound(sessionScope.getRound() + 1);
 
 		return sessionScope;

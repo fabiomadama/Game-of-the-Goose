@@ -45,7 +45,6 @@ public class Prison extends AbstractSpaces
 		}
 		player.setStuck(true);
 		player.setRound(sessionScope.getRound());
-		sessionScope.resetDiceValue();
 		sessionScope.setRound(sessionScope.getRound() + 1);
 
 		return sessionScope;

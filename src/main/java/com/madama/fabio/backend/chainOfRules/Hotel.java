@@ -36,7 +36,6 @@ public class Hotel extends AbstractSpaces
 		Player player = sessionScope.getPlayers().get(getPlayerNumber(sessionScope));
 		player.setSpace(findDestination(sessionScope));
 		player.setRound(sessionScope.getRound() + 3);
-		sessionScope.resetDiceValue();
 		sessionScope.setRound(sessionScope.getRound() + 1);
 		messageBoard.setText(GooseUtils.retrievePlayerName(player.getColor()) + " in Hotel, wait 3 round ! ");
 		messageBoard.repaint();

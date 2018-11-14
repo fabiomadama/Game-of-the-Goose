@@ -36,7 +36,6 @@ public class Bridge extends AbstractSpaces
 		Player player = sessionScope.getPlayers().get(getPlayerNumber(sessionScope));
 		player.setSpace(6 + sessionScope.getDice_1() + sessionScope.getDice_2());
 		player.setRound(sessionScope.getRound());
-		sessionScope.resetDiceValue();
 		sessionScope.setRound(sessionScope.getRound() + 1);
 		messageBoard.setText(GooseUtils.retrievePlayerName(player.getColor()) + " on Bridge, double score ! ");
 		messageBoard.repaint();

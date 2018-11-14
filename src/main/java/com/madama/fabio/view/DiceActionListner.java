@@ -7,30 +7,28 @@ package com.madama.fabio.view;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.Timer;
 
-import com.madama.fabio.backend.Controller;
+import com.madama.fabio.backend.GooseUtils;
 import com.madama.fabio.backend.SessionScope;
 import com.madama.fabio.bean.DiceActionBean;
 
 public class DiceActionListner implements java.awt.event.ActionListener
 {
 
-	private static final Logger	logger = Logger.getLogger(DiceActionListner.class.getName());
-	private Billboard			billboard;
-	private MessageBoard		messageBoard;
-	private JButton				dice;
-	private JLabel				diceImg;
-	private BufferedImage[]		diceFaces;
-	private int					lastRoll;
-	private int					diceN;														 // identifico il Dice	
-	private SessionScope		sessionScope;
+	//private static final Logger	logger = Logger.getLogger(DiceActionListner.class.getName());
+	private Billboard		billboard;
+	private MessageBoard	messageBoard;
+	private JButton			dice;
+	private JLabel			diceImg;
+	private BufferedImage[]	diceFaces;
+	private int				lastRoll;
+	private int				diceN;		 // identifico il Dice	
+	private SessionScope	sessionScope;
 
 	public DiceActionListner(DiceActionBean diceActionBean)
 	{
@@ -92,23 +90,11 @@ public class DiceActionListner implements java.awt.event.ActionListener
 						sessionScope.setDice_2(lastRoll + 1);
 						sessionScope.yesDiceLaunched2();
 					}
-					check();
+					GooseUtils.check(sessionScope, billboard, messageBoard);
 				}
 			}// actionPerformed
 
 		});// Timer
 		timer.start();
-	}
-
-	private synchronized void check()
-	{
-		if (sessionScope.getDice_1() != 0 && this.sessionScope.getDice_2() != 0 && this.sessionScope.isDiceLaunched_1()
-				&& this.sessionScope.isDiceLaunched_2())
-		{
-			logger.log(Level.INFO, "############## 1: " + this.sessionScope.getDice_1() + " 2: " + this.sessionScope.getDice_2());
-			sessionScope.resetDiceLanched();
-			Controller controller = new Controller();
-			controller.check(this.billboard, this.messageBoard, this.sessionScope);
-		}
 	}
 }

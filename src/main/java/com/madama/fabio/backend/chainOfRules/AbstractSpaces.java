@@ -26,7 +26,7 @@ public abstract class AbstractSpaces implements ChainOfRulesHandler
 	{
 		if (nextChainObj != null)
 		{
-			return nextChainObj.doExecute(sessionScope, null);
+			return nextChainObj.doExecute(sessionScope, messageBoard);
 		}
 		else
 		{

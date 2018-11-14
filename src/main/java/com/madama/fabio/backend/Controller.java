@@ -32,6 +32,8 @@ public class Controller
 			ArrayList<Player> players = sessionScope.getPlayers();
 			GooseUtils.moveGui(billboard, players);
 			GooseUtils.checkWin(sessionScope.getPlayers(), messageBoard);
+			sessionScope.resetDiceLanched();
+			sessionScope.resetDiceValue();
 		}
 		catch (Exception e)
 		{
