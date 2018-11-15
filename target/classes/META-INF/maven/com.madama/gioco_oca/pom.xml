@@ -22,4 +22,7 @@
   		<scope>test</scope>
   	</dependency>
   </dependencies>
+  <organization>
+  	<name>Fabio Madama</name>
+  </organization>
 </project>

@@ -43,9 +43,7 @@ public class Goose extends AbstractSpaces
 		if (player.getRound() == 0 && findDestination(sessionScope) == 9)
 		{
 			player.setSpace(63);
-			player.setWin(true);
-			messageBoard.setText(GooseUtils.retrievePlayerName(player.getColor()) + " player win !");
-			messageBoard.repaint();
+			player.setWin(true);			
 			logger.log(Level.INFO, "Goose WIN !!");
 		}
 		else
