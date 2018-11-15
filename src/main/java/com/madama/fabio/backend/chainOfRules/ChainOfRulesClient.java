@@ -4,8 +4,7 @@
  */
 package com.madama.fabio.backend.chainOfRules;
 
-import com.madama.fabio.backend.SessionScope;
-import com.madama.fabio.view.MessageBoard;
+import com.madama.fabio.bean.ChainOfRulesBean;
 
 public class ChainOfRulesClient
 {
@@ -19,9 +18,9 @@ public class ChainOfRulesClient
 	private Goose		  goose			= new Goose(prison);
 	private GenericSpaces genericSpaces	= new GenericSpaces(goose);
 
-	public SessionScope start(SessionScope sessionScope, MessageBoard messageBoard) throws Exception
+	public ChainOfRulesBean start(ChainOfRulesBean chainOfRulesBean) throws Exception
 	{
-		return genericSpaces.doExecute(sessionScope, messageBoard);
+		return genericSpaces.doExecute(chainOfRulesBean);
 	}
 
 }

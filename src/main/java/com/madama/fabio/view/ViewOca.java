@@ -73,35 +73,4 @@ public class ViewOca extends JFrame
 
 		return configureLayoutBean;
 	}
-
-	/* test methods */
-	//	public void redraw(ArrayList<Player> players)
-	//	{
-	//		this.billboard.setPlayers(players);
-	//		this.billboard.repaint();
-	//	}
-	//
-	//	public void writeText(String text)
-	//	{
-	//		this.messageBoard.setText(text);
-	//		this.
-	//	}
-	//
-	//	public void rollTheDice()
-	//	{
-	//		Component[] buttons = this.dice.getComponents();
-	//		((JButton) buttons[0]).doClick();
-	//		((JButton) buttons[1]).doClick();
-	//	}
-	//
-	//	public Billboard getBillboard()
-	//	{
-	//		return billboard;
-	//	}
-	//
-	//	public MessageBoard getMessageBoard()
-	//	{
-	//		return messageBoard;
-	//	}
-
 }

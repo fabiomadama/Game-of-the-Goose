@@ -4,12 +4,11 @@
  */
 package com.madama.fabio.backend.chainOfRules;
 
-import com.madama.fabio.backend.SessionScope;
-import com.madama.fabio.view.MessageBoard;
+import com.madama.fabio.bean.ChainOfRulesBean;
 
 public interface ChainOfRulesHandler
 {
-	SessionScope nextChain(SessionScope sessionScope, MessageBoard messageBoard) throws Exception;
+	ChainOfRulesBean nextChain(ChainOfRulesBean chainOfRulesBean) throws Exception;
 
-	SessionScope doExecute(SessionScope sessionScope, MessageBoard messageBoard) throws Exception;
+	ChainOfRulesBean doExecute(ChainOfRulesBean chainOfRulesBean) throws Exception;
 }

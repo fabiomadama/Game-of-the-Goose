@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 import com.madama.fabio.backend.GooseUtils;
 import com.madama.fabio.backend.Player;
 import com.madama.fabio.backend.SessionScope;
+import com.madama.fabio.bean.ChainOfRulesBean;
 import com.madama.fabio.view.MessageBoard;
 
 public class Labyrinth extends AbstractSpaces
@@ -29,17 +30,19 @@ public class Labyrinth extends AbstractSpaces
 	}
 
 	@Override
-	public SessionScope executeRules(SessionScope sessionScope, MessageBoard messageBoard)
+	public ChainOfRulesBean executeRules(ChainOfRulesBean chainOfRulesBean)
 	{
 		logger.log(Level.INFO, "Labyrinth");
+		SessionScope sessionScope = chainOfRulesBean.getSessionScope();
+		MessageBoard messageBoard = chainOfRulesBean.getMessageBoard();
 		Player player = sessionScope.getPlayers().get(getPlayerNumber(sessionScope));
 		player.setSpace(33);
-		player.setRound(sessionScope.getRound());
 		sessionScope.setRound(sessionScope.getRound() + 1);
+		player.setRound(sessionScope.getRound());
 		messageBoard.setText(GooseUtils.retrievePlayerName(player.getColor()) + " in Labyrinth, back to 33 ! ");
 		
 
-		return sessionScope;
+		return chainOfRulesBean;
 	}
 
 }

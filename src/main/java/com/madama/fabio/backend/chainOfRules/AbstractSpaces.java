@@ -9,7 +9,7 @@ import java.util.HashSet;
 import com.madama.fabio.backend.GooseUtils;
 import com.madama.fabio.backend.Player;
 import com.madama.fabio.backend.SessionScope;
-import com.madama.fabio.view.MessageBoard;
+import com.madama.fabio.bean.ChainOfRulesBean;
 
 public abstract class AbstractSpaces implements ChainOfRulesHandler
 {
@@ -22,15 +22,15 @@ public abstract class AbstractSpaces implements ChainOfRulesHandler
 	}
 
 	@Override
-	public SessionScope nextChain(SessionScope sessionScope, MessageBoard messageBoard) throws Exception
+	public ChainOfRulesBean nextChain(ChainOfRulesBean chainOfRulesBean) throws Exception
 	{
 		if (nextChainObj != null)
 		{
-			return nextChainObj.doExecute(sessionScope, messageBoard);
+			return nextChainObj.doExecute(chainOfRulesBean);
 		}
 		else
 		{
-			return sessionScope;
+			return chainOfRulesBean;
 		}
 	}
 
@@ -63,18 +63,18 @@ public abstract class AbstractSpaces implements ChainOfRulesHandler
 	 * @param Apply the rules of the landing space
 	 * @return
 	 */
-	public abstract SessionScope executeRules(SessionScope sessionScope, MessageBoard messageBoard);
+	public abstract ChainOfRulesBean executeRules(ChainOfRulesBean chainOfRulesBean);
 
 	@Override
-	public SessionScope doExecute(SessionScope sessionScope, MessageBoard messageBoard) throws Exception
+	public ChainOfRulesBean doExecute(ChainOfRulesBean chainOfRulesBean) throws Exception
 	{
-		if (doTest(findDestination(sessionScope)))
+		if (doTest(findDestination(chainOfRulesBean.getSessionScope())))
 		{
-			return executeRules(sessionScope, messageBoard);
+			return executeRules(chainOfRulesBean);
 		}
 		else
 		{
-			return nextChain(sessionScope, messageBoard);
+			return nextChain(chainOfRulesBean);
 		}
 	}
 

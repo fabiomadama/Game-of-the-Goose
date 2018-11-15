@@ -27,6 +27,5 @@ public class MessageBoard extends JPanel
 	public void setText(String text)
 	{
 		this.labelText.setText(text);
-		repaint();
 	}
 }

@@ -59,11 +59,13 @@ public class ComponentGenerator
 		JMenuItem menuItemPlayers3 = new JMenuItem("3 players ");
 		menuItemPlayers3.setActionCommand("3");
 		menuItemPlayers3.addActionListener(menuItemListener);
+		menuItemPlayers3.setEnabled(false);
 		fileMenu.add(menuItemPlayers3);
 
 		JMenuItem menuItemPlayers4 = new JMenuItem("4 players ");
 		menuItemPlayers4.setActionCommand("4");
 		menuItemPlayers4.addActionListener(menuItemListener);
+		menuItemPlayers4.setEnabled(false);
 		fileMenu.add(menuItemPlayers4);
 
 		menuBar.add(fileMenu);
@@ -73,7 +75,6 @@ public class ComponentGenerator
 		menuBar.setMaximumSize(dimensionHelp);
 		menuBar.setMinimumSize(dimensionHelp);
 		helpMenu.setText("Help");
-		helpMenu.setName("helpMenu");
 
 		JMenuItem helpItem = new JMenuItem("Press File and select number of players");
 		helpMenu.add(helpItem);

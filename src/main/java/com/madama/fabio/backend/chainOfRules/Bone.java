@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 import com.madama.fabio.backend.GooseUtils;
 import com.madama.fabio.backend.Player;
 import com.madama.fabio.backend.SessionScope;
+import com.madama.fabio.bean.ChainOfRulesBean;
 import com.madama.fabio.view.MessageBoard;
 
 public class Bone extends AbstractSpaces
@@ -28,16 +29,18 @@ public class Bone extends AbstractSpaces
 	}
 
 	@Override
-	public SessionScope executeRules(SessionScope sessionScope, MessageBoard messageBoard)
+	public ChainOfRulesBean executeRules(ChainOfRulesBean chainOfRulesBean)
 	{
 		logger.log(Level.INFO, "Bone");
+		SessionScope sessionScope = chainOfRulesBean.getSessionScope();
+		MessageBoard messageBoard = chainOfRulesBean.getMessageBoard();
 		Player player = sessionScope.getPlayers().get(getPlayerNumber(sessionScope));
 		player.setSpace(1);
-		player.setRound(sessionScope.getRound());
 		sessionScope.setRound(sessionScope.getRound() + 1);
+		player.setRound(sessionScope.getRound());
 		messageBoard.setText(GooseUtils.retrievePlayerName(player.getColor()) + " Back to start! ");
 		
-		return sessionScope;
+		return chainOfRulesBean;
 	}
 
 }

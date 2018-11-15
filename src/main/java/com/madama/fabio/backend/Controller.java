@@ -9,6 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.madama.fabio.backend.chainOfRules.ChainOfRulesClient;
+import com.madama.fabio.bean.ChainOfRulesBean;
 import com.madama.fabio.view.Billboard;
 import com.madama.fabio.view.MessageBoard;
 
@@ -26,14 +27,20 @@ public class Controller {
 	public void check(Billboard billboard, MessageBoard messageBoard, SessionScope sessionScope) {
 		try {
 			ChainOfRulesClient chainClient = new ChainOfRulesClient();
-			sessionScope = chainClient.start(sessionScope, messageBoard);
-			ArrayList<Player> players = sessionScope.getPlayers();
+			
+			ChainOfRulesBean chainOfRulesBean = new ChainOfRulesBean();
+			chainOfRulesBean.setMessageBoard(messageBoard);
+			chainOfRulesBean.setSessionScope(sessionScope);			
+			chainClient.start(chainOfRulesBean);
+			
+			ArrayList<Player> players = chainOfRulesBean.getSessionScope().getPlayers();
 			GooseUtils.moveGui(billboard, players);
-			GooseUtils.checkWin(sessionScope.getPlayers(), messageBoard);
-			if (!GooseUtils.checkLook(sessionScope.getPlayers(), messageBoard)) {
-				sessionScope.resetDiceLanched();
-				sessionScope.resetDice();
+			GooseUtils.checkWin(chainOfRulesBean.getSessionScope().getPlayers(), chainOfRulesBean.getMessageBoard());
+			if (!GooseUtils.checkLook(chainOfRulesBean.getSessionScope().getPlayers(), chainOfRulesBean.getMessageBoard())) {
+				chainOfRulesBean.getSessionScope().resetDiceLanched();
+				chainOfRulesBean.getSessionScope().resetDice();
 			}
+			messageBoard.repaint();
 		} catch (Exception e) {
 			logger.log(Level.SEVERE, "check", e);
 		}

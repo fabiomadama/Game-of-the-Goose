@@ -8,8 +8,10 @@ import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import com.madama.fabio.backend.GooseUtils;
 import com.madama.fabio.backend.Player;
 import com.madama.fabio.backend.SessionScope;
+import com.madama.fabio.bean.ChainOfRulesBean;
 import com.madama.fabio.view.MessageBoard;
 
 public class GenericSpaces extends AbstractSpaces
@@ -82,13 +84,17 @@ public class GenericSpaces extends AbstractSpaces
 	}
 
 	@Override
-	public SessionScope executeRules(SessionScope sessionScope, MessageBoard messageBoard)
+	public ChainOfRulesBean executeRules(ChainOfRulesBean chainOfRulesBean)
 	{
+		SessionScope sessionScope = chainOfRulesBean.getSessionScope();
+		MessageBoard messageBoard = chainOfRulesBean.getMessageBoard();
 		logger.log(Level.INFO, "GenericSpaces");
 		Player player = sessionScope.getPlayers().get(getPlayerNumber(sessionScope));
 		player.setSpace(findDestination(sessionScope));
 		sessionScope.setRound(sessionScope.getRound() + 1);
 		player.setRound(sessionScope.getRound());
-		return sessionScope;
+		messageBoard.setText(GooseUtils.retrievePlayerName(player.getColor()) + " go to "+player.getSpace());	
+		
+		return chainOfRulesBean;
 	}
 }

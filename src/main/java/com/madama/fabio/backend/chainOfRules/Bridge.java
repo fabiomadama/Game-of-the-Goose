@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 import com.madama.fabio.backend.GooseUtils;
 import com.madama.fabio.backend.Player;
 import com.madama.fabio.backend.SessionScope;
+import com.madama.fabio.bean.ChainOfRulesBean;
 import com.madama.fabio.view.MessageBoard;
 
 public class Bridge extends AbstractSpaces
@@ -29,18 +30,18 @@ public class Bridge extends AbstractSpaces
 	}
 
 	@Override
-	public SessionScope executeRules(SessionScope sessionScope, MessageBoard messageBoard)
+	public ChainOfRulesBean executeRules(ChainOfRulesBean chainOfRulesBean)
 	{
 		logger.log(Level.INFO, "Bridge");
-
+		SessionScope sessionScope = chainOfRulesBean.getSessionScope();
+		MessageBoard messageBoard = chainOfRulesBean.getMessageBoard();
 		Player player = sessionScope.getPlayers().get(getPlayerNumber(sessionScope));
 		player.setSpace(6 + sessionScope.getDice_1() + sessionScope.getDice_2());
-		player.setRound(sessionScope.getRound());
 		sessionScope.setRound(sessionScope.getRound() + 1);
-		messageBoard.setText(GooseUtils.retrievePlayerName(player.getColor()) + " on Bridge, double score ! ");
-		
+		player.setRound(sessionScope.getRound());
+		messageBoard.setText(GooseUtils.retrievePlayerName(player.getColor()) + " on Bridge, double score ! ");		
 
-		return sessionScope;
+		return chainOfRulesBean;
 	}
 
 }

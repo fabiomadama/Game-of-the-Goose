@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 import com.madama.fabio.backend.GooseUtils;
 import com.madama.fabio.backend.Player;
 import com.madama.fabio.backend.SessionScope;
+import com.madama.fabio.bean.ChainOfRulesBean;
 import com.madama.fabio.view.MessageBoard;
 
 public class Prison extends AbstractSpaces
@@ -30,10 +31,11 @@ public class Prison extends AbstractSpaces
 	}
 
 	@Override
-	public SessionScope executeRules(SessionScope sessionScope, MessageBoard messageBoard)
+	public ChainOfRulesBean executeRules(ChainOfRulesBean chainOfRulesBean)
 	{
 		logger.log(Level.INFO, "GenericSpaces");
-
+		SessionScope sessionScope = chainOfRulesBean.getSessionScope();
+		MessageBoard messageBoard = chainOfRulesBean.getMessageBoard();
 		Player player = sessionScope.getPlayers().get(getPlayerNumber(sessionScope));
 		for (Player item : sessionScope.getPlayers())
 		{
@@ -45,11 +47,11 @@ public class Prison extends AbstractSpaces
 		}
 		player.setStuck(true);
 		player.setSpace(findDestination(sessionScope));
-		player.setRound(sessionScope.getRound());
 		sessionScope.setRound(sessionScope.getRound() + 1);
+		player.setRound(sessionScope.getRound());
 		messageBoard.setText(GooseUtils.retrievePlayerName(player.getColor()) + " in Prison or Water Well, waiting for someone to free you ! ");
 
-		return sessionScope;
+		return chainOfRulesBean;
 	}
 
 }

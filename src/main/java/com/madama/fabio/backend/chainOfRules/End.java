@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 import com.madama.fabio.backend.GooseUtils;
 import com.madama.fabio.backend.Player;
 import com.madama.fabio.backend.SessionScope;
+import com.madama.fabio.bean.ChainOfRulesBean;
 import com.madama.fabio.view.MessageBoard;
 
 public class End extends AbstractSpaces
@@ -34,16 +35,17 @@ public class End extends AbstractSpaces
 	}
 
 	@Override
-	public SessionScope executeRules(SessionScope sessionScope, MessageBoard messageBoard)
+	public ChainOfRulesBean executeRules(ChainOfRulesBean chainOfRulesBean)
 	{
 		logger.log(Level.INFO, "End");
-
+		SessionScope sessionScope = chainOfRulesBean.getSessionScope();
+		MessageBoard messageBoard = chainOfRulesBean.getMessageBoard();
 		Player player = sessionScope.getPlayers().get(getPlayerNumber(sessionScope));
 		player.setSpace(calcolateDestination(sessionScope, player, messageBoard));
-		player.setRound(sessionScope.getRound());
 		sessionScope.setRound(sessionScope.getRound() + 1);
+		player.setRound(sessionScope.getRound());
 
-		return sessionScope;
+		return chainOfRulesBean;
 	}
 
 	private int calcolateDestination(SessionScope sessionScope, Player player, MessageBoard messageBoard)

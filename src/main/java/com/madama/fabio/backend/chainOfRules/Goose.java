@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 
 import com.madama.fabio.backend.Player;
 import com.madama.fabio.backend.SessionScope;
-import com.madama.fabio.view.MessageBoard;
+import com.madama.fabio.bean.ChainOfRulesBean;
 
 public class Goose extends AbstractSpaces
 {
@@ -34,9 +34,10 @@ public class Goose extends AbstractSpaces
 	}
 
 	@Override
-	public SessionScope executeRules(SessionScope sessionScope, MessageBoard messageBoard)
+	public ChainOfRulesBean executeRules(ChainOfRulesBean chainOfRulesBean)
 	{
 		logger.log(Level.INFO, "Goose");
+		SessionScope sessionScope = chainOfRulesBean.getSessionScope();
 		Player player = sessionScope.getPlayers().get(getPlayerNumber(sessionScope));
 
 		if (player.getRound() == 0 && findDestination(sessionScope) == 9)
@@ -48,10 +49,10 @@ public class Goose extends AbstractSpaces
 		else
 		{
 			player.setSpace(findDestination(sessionScope) + sessionScope.getDice_1() + sessionScope.getDice_2());
-			player.setRound(sessionScope.getRound());
+			
 		}
 		sessionScope.setRound(sessionScope.getRound() + 1);
-
-		return sessionScope;
+		player.setRound(sessionScope.getRound());
+		return chainOfRulesBean;
 	}
 }
