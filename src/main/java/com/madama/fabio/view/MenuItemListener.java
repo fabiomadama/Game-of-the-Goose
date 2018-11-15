@@ -8,19 +8,23 @@ import com.madama.fabio.backend.SessionScope;
 
 public class MenuItemListener implements ActionListener
 {
-	SessionScope sessionScope;
-	Billboard	 billboard;
+	private SessionScope sessionScope;
+	private Billboard	 billboard;
+	private MessageBoard messageBoard;
 
-	public MenuItemListener(SessionScope sessionScope, Billboard billboard)
+	public MenuItemListener(SessionScope sessionScope, Billboard billboard, MessageBoard messageBoard)
 	{
 		this.sessionScope = sessionScope;
 		this.billboard = billboard;
+		this.messageBoard = messageBoard;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
 		GooseUtils.initPlayersAndGame(sessionScope, Integer.valueOf(e.getActionCommand()));
+		this.messageBoard.setText("");
+		this.messageBoard.repaint();
 		GooseUtils.moveGui(billboard, sessionScope.getPlayers());
 	}
 }

@@ -34,7 +34,7 @@ public class ComponentGenerator
 		return panel;
 	}
 
-	public JMenuBar retrieveMenuBar(SessionScope sessionScope, Billboard billboard)
+	public JMenuBar retrieveMenuBar(SessionScope sessionScope, Billboard billboard, MessageBoard messageBoard)
 	{
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setDoubleBuffered(true);
@@ -49,7 +49,7 @@ public class ComponentGenerator
 		menuBar.setMaximumSize(dimensionMenu);
 		menuBar.setMinimumSize(dimensionMenu);
 
-		MenuItemListener menuItemListener = new MenuItemListener(sessionScope, billboard);
+		MenuItemListener menuItemListener = new MenuItemListener(sessionScope, billboard, messageBoard);
 
 		JMenuItem menuItemPlayers2 = new JMenuItem("2 players ");
 		menuItemPlayers2.setActionCommand("2");
@@ -74,7 +74,7 @@ public class ComponentGenerator
 		menuBar.setMinimumSize(dimensionHelp);
 		helpMenu.setText("Help");
 		helpMenu.setName("helpMenu");
-		
+
 		JMenuItem helpItem = new JMenuItem("Press File and select number of players");
 		helpMenu.add(helpItem);
 		menuBar.add(helpMenu);
@@ -113,9 +113,7 @@ public class ComponentGenerator
 		panel.setMaximumSize(dimension);
 		panel.setMinimumSize(dimension);
 		panel.setBackground(Color.WHITE);
-
 		panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
-
 		panel.add(retriveDice(1, billboard, messageBoard, sessionScope));
 		panel.add(retriveDice(2, billboard, messageBoard, sessionScope));
 
