@@ -30,6 +30,7 @@ public class ViewOca extends JFrame
 				componentGenerator.retrieveMenuBar(sessionScope, configureLayoutBean.getBillboard(), configureLayoutBean.getMessageBoard()));
 		mainFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		mainFrame.setVisible(true);
+
 	}
 
 	/**
@@ -83,7 +84,7 @@ public class ViewOca extends JFrame
 	//	public void writeText(String text)
 	//	{
 	//		this.messageBoard.setText(text);
-	//		this.messageBoard.repaint();
+	//		this.
 	//	}
 	//
 	//	public void rollTheDice()

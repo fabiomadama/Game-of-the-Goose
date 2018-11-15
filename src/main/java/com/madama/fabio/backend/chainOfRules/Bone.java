@@ -36,7 +36,7 @@ public class Bone extends AbstractSpaces
 		player.setRound(sessionScope.getRound());
 		sessionScope.setRound(sessionScope.getRound() + 1);
 		messageBoard.setText(GooseUtils.retrievePlayerName(player.getColor()) + " Back to start! ");
-		messageBoard.repaint();
+		
 		return sessionScope;
 	}
 

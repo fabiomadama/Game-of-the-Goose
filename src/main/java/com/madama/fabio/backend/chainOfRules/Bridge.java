@@ -38,7 +38,7 @@ public class Bridge extends AbstractSpaces
 		player.setRound(sessionScope.getRound());
 		sessionScope.setRound(sessionScope.getRound() + 1);
 		messageBoard.setText(GooseUtils.retrievePlayerName(player.getColor()) + " on Bridge, double score ! ");
-		messageBoard.repaint();
+		
 
 		return sessionScope;
 	}

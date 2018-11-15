@@ -34,7 +34,7 @@ public class Prison extends AbstractSpaces
 	{
 		logger.log(Level.INFO, "GenericSpaces");
 
-		Player player = sessionScope.getPlayers().get(getPlayerNumber(sessionScope));		
+		Player player = sessionScope.getPlayers().get(getPlayerNumber(sessionScope));
 		for (Player item : sessionScope.getPlayers())
 		{
 			if (item.isStuck())
@@ -42,13 +42,12 @@ public class Prison extends AbstractSpaces
 				item.setStuck(false);
 				break;
 			}
-		}		
+		}
 		player.setStuck(true);
 		player.setSpace(findDestination(sessionScope));
 		player.setRound(sessionScope.getRound());
 		sessionScope.setRound(sessionScope.getRound() + 1);
-		messageBoard.setText(GooseUtils.retrievePlayerName(player.getColor()) + " in Prison, waiting for someone to free you ! ");
-		messageBoard.repaint();
+		messageBoard.setText(GooseUtils.retrievePlayerName(player.getColor()) + " in Prison or Water Well, waiting for someone to free you ! ");
 
 		return sessionScope;
 	}

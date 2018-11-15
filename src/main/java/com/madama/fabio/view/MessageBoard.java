@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 public class MessageBoard extends JPanel
 {
 	private static final long serialVersionUID = 1L;
+
 	JLabel					  labelText		   = new JLabel();
 
 	public MessageBoard()
@@ -26,5 +27,6 @@ public class MessageBoard extends JPanel
 	public void setText(String text)
 	{
 		this.labelText.setText(text);
+		repaint();
 	}
 }

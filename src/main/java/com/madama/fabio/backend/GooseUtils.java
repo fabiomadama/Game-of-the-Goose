@@ -168,7 +168,7 @@ public class GooseUtils
 			if (player.isWin())
 			{
 				messageBoard.setText(GooseUtils.retrievePlayerName(player.getColor()) + " win the game ! ");
-				messageBoard.repaint();
+				
 			}
 		}
 	}
@@ -177,7 +177,7 @@ public class GooseUtils
 	{
 		if(players.size() == 2 && players.get(0).isStuck() && players.get(1).isStuck()) {
 			messageBoard.setText("All locked, end game.. ");
-			messageBoard.repaint();
+			
 			return true;
 		}
 		return false;

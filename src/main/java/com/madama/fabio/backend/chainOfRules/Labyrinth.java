@@ -37,7 +37,7 @@ public class Labyrinth extends AbstractSpaces
 		player.setRound(sessionScope.getRound());
 		sessionScope.setRound(sessionScope.getRound() + 1);
 		messageBoard.setText(GooseUtils.retrievePlayerName(player.getColor()) + " in Labyrinth, back to 33 ! ");
-		messageBoard.repaint();
+		
 
 		return sessionScope;
 	}

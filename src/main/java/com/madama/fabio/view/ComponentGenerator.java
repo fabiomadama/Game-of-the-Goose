@@ -101,7 +101,7 @@ public class ComponentGenerator
 		Dimension dimension = new Dimension(600, 70);
 		panel.setMaximumSize(dimension);
 		panel.setMinimumSize(dimension);
-		panel.setBackground(Color.GRAY);
+		panel.setBackground(Color.LIGHT_GRAY);
 		return panel;
 	}
 

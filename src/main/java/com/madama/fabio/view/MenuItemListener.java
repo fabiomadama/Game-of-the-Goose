@@ -23,8 +23,8 @@ public class MenuItemListener implements ActionListener
 	public void actionPerformed(ActionEvent e)
 	{
 		GooseUtils.initPlayersAndGame(sessionScope, Integer.valueOf(e.getActionCommand()));
-		this.messageBoard.setText("");
-		this.messageBoard.repaint();
+		this.messageBoard.setText("Start game !");
 		GooseUtils.moveGui(billboard, sessionScope.getPlayers());
+
 	}
 }
