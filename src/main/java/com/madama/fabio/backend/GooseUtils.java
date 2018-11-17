@@ -6,6 +6,7 @@ package com.madama.fabio.backend;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -76,27 +77,19 @@ public class GooseUtils {
 	 * @param sessionScope
 	 * @return int intedx of list
 	 */
-	public static int whosnext(SessionScope sessionScope) {
-		int index = -1;
-		if (sessionScope.getRound() == 0) {
-			return 0;
-		}
-
-		for (int i = 0; i < sessionScope.getPlayers().size(); i++) {
-			Player player = sessionScope.getPlayers().get(i);
-			if (!player.isStuck() && player.getRound() < sessionScope.getRound()) {
-				index = i;
-				break;
-			}
-		} // for
-		if(index == -1){
-			logger.log(Level.WARNING, "cicle");
-			sessionScope.setRound(sessionScope.getRound() +1);
-			return whosnext(sessionScope);
-		}
-		return index;
-	}// whosnext
-
+	public static int whosnext (SessionScope sessionScope){//start method
+		   List<Player> players =  sessionScope.getPlayers();
+	       int index = 0;
+	       int min = players.get(index).getRound();
+	       for (int i=1; i<players.size(); i++){
+	           if (!players.get(i).isStuck() && players.get(i).getRound() < min ){
+	               min = players.get(i).getRound();
+	               index = i;
+	           }
+	       }
+	       return index ;
+	}
+	
 	/**
 	 * Retrieve the player Color to use in message
 	 * 

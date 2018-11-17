@@ -16,7 +16,8 @@ public class ChainOfRulesClient
 	private Hotel		  inn			= new Hotel(labyrinth);
 	private Prison		  prison		= new Prison(inn);
 	private Goose		  goose			= new Goose(prison);
-	private GenericSpaces genericSpaces	= new GenericSpaces(goose);
+	private Bridge        bridge		= new Bridge(goose);
+	private GenericSpaces genericSpaces	= new GenericSpaces(bridge);
 
 	public ChainOfRulesBean start(ChainOfRulesBean chainOfRulesBean) throws Exception
 	{

@@ -34,12 +34,12 @@ public class Bridge extends AbstractSpaces
 	{
 		logger.log(Level.INFO, "Bridge");
 		SessionScope sessionScope = chainOfRulesBean.getSessionScope();
-		MessageBoard messageBoard = chainOfRulesBean.getMessageBoard();
 		Player player = sessionScope.getPlayers().get(getPlayerNumber(sessionScope));
 		player.setSpace(6 + sessionScope.getDice_1() + sessionScope.getDice_2());
 		sessionScope.setRound(sessionScope.getRound() + 1);
 		player.setRound(sessionScope.getRound());
-		messageBoard.setText(GooseUtils.retrievePlayerName(player.getColor()) + " on Bridge, double score ! ");		
+		MessageBoard messageBoard = chainOfRulesBean.getMessageBoard();
+		messageBoard.setText(GooseUtils.retrievePlayerName(player.getColor()) + " on Bridge, double score ! Go to "+player.getSpace());		
 
 		return chainOfRulesBean;
 	}

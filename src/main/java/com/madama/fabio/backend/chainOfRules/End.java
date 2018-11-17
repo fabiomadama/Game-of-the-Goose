@@ -57,7 +57,7 @@ public class End extends AbstractSpaces
 		}
 		if (findDestination(sessionScope) > 63)
 		{
-			messageBoard.setText(GooseUtils.retrievePlayerName(player.getColor()) + " try again ! ");
+			messageBoard.setText(GooseUtils.retrievePlayerName(player.getColor()) + " try again ! Go to "+player.getSpace());
 			
 			return (63 - (findDestination(sessionScope) - 63));
 		}

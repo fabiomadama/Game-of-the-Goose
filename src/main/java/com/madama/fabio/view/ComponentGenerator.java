@@ -59,13 +59,13 @@ public class ComponentGenerator
 		JMenuItem menuItemPlayers3 = new JMenuItem("3 players ");
 		menuItemPlayers3.setActionCommand("3");
 		menuItemPlayers3.addActionListener(menuItemListener);
-		menuItemPlayers3.setEnabled(false);
+//		menuItemPlayers3.setEnabled(false);
 		fileMenu.add(menuItemPlayers3);
 
 		JMenuItem menuItemPlayers4 = new JMenuItem("4 players ");
 		menuItemPlayers4.setActionCommand("4");
 		menuItemPlayers4.addActionListener(menuItemListener);
-		menuItemPlayers4.setEnabled(false);
+//		menuItemPlayers4.setEnabled(false);
 		fileMenu.add(menuItemPlayers4);
 
 		menuBar.add(fileMenu);

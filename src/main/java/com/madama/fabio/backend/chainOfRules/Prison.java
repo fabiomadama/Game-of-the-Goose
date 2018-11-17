@@ -33,7 +33,7 @@ public class Prison extends AbstractSpaces
 	@Override
 	public ChainOfRulesBean executeRules(ChainOfRulesBean chainOfRulesBean)
 	{
-		logger.log(Level.INFO, "GenericSpaces");
+		logger.log(Level.INFO, "Prison");
 		SessionScope sessionScope = chainOfRulesBean.getSessionScope();
 		MessageBoard messageBoard = chainOfRulesBean.getMessageBoard();
 		Player player = sessionScope.getPlayers().get(getPlayerNumber(sessionScope));

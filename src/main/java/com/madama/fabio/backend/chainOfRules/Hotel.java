@@ -37,9 +37,8 @@ public class Hotel extends AbstractSpaces
 		MessageBoard messageBoard = chainOfRulesBean.getMessageBoard();
 		Player player = sessionScope.getPlayers().get(getPlayerNumber(sessionScope));
 		player.setSpace(findDestination(sessionScope));
-		player.setRound(sessionScope.getRound());
+		player.setRound(sessionScope.getRound() +3);
 		sessionScope.setRound(sessionScope.getRound() + 1);
-		player.setRound(player.getRound() + 3);
 		messageBoard.setText(GooseUtils.retrievePlayerName(player.getColor()) + " in Hotel, wait 3 round ! ");
 
 		return chainOfRulesBean;
